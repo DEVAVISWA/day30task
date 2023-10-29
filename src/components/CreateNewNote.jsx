@@ -12,7 +12,7 @@ function CreateNewNote({ addNote, newNoteContent, newNoteImportant,
             <h2>Add a New Note</h2>
             <form onSubmit={addNote}>
                 <label>
-                    Content: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Name: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input
                         type='text'
                         ref={newNoteContentRef}
@@ -20,20 +20,8 @@ function CreateNewNote({ addNote, newNoteContent, newNoteImportant,
                         onChange={e => setNewNoteContent(e.target.value)}
                     />
                 </label>
-                <br /><br />
-                <label>
-                    Is important: &nbsp;&nbsp;
-                    <select
-                        onChange={e => setNewNoteImportant(e.target.value)}
-                        value={newNoteImportant}
-                    >
-                        <option disabled>--select--</option>
-                        <option value='true'>true</option>
-                        <option value='false'>false</option>
-                    </select>
-                </label>
-                <br /><br />
-                <button type='submit'>Add New Note</button>
+                <br /><br />               
+                <button type='submit'>Add New Name</button>
             </form>
         </div>
     )

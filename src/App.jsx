@@ -6,20 +6,13 @@ import { Link, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import UpdateNote from './components/UpdateNote';
 import DeleteNote from './components/DeleteNotes';
+import './style/ReadNotes.css'
 
 function App() {
-
-  // define a state to store the notes from props
   const [notes, setNotes] = useState([]);
-  // console.log(notes)
-
   const [showStatus, setShowStatus] = useState('all');
-
-  // states for adding new note form
   const [newNoteContent, setNewNoteContent] = useState('');
   const [newNoteImportant, setNewNoteImportant] = useState('true');
-
-  // define a contentRef to access and manipulate the content element
   const newNoteContentRef = useRef(null);
 
   useEffect(() => {
@@ -28,7 +21,7 @@ function App() {
 
   const fetchNotes = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/notes')
+      const response = await axios.get('https://jsonplaceholder.typicode.com/users')
       // console.log(response)
       // console.log(response.data)
       setNotes(response.data)
@@ -39,28 +32,21 @@ function App() {
 
   const addNote = (event) => {
     event.preventDefault();
-
-    // create a new note object
     let noteObject = {
       id: notes.length + 1,
       content: newNoteContent,
       important: newNoteImportant == 'true',
     }
-
-    // setNotes(notes.concat(noteObject));
     console.log('adding new note...')
     axios
-      .post('http://localhost:3001/notes/', noteObject)
+      .post('https://jsonplaceholder.typicode.com/users', noteObject)
       .then(response => {
         console.log('note added successfully...')
       })
 
     fetchNotes()
-    
-    // clear the inputs
     setNewNoteContent('');
     setNewNoteImportant('');
-
     newNoteContentRef.current.focus();
   }
 
@@ -96,15 +82,15 @@ function App() {
             setNewNoteContent={setNewNoteContent}
             setNewNoteImportant={setNewNoteImportant} />} />
 
-        <Route path='/update' 
-        element={ <UpdateNote notes={notes} 
-        setNotes={setNotes}
-        fetchNotes={fetchNotes} />}  />
+        <Route path='/update'
+          element={<UpdateNote notes={notes}
+            setNotes={setNotes}
+            fetchNotes={fetchNotes} />} />
 
-        <Route path='/delete' element={<DeleteNote 
-        notes={notes}
-        setNotes={setNotes}
-        fetchNotes={fetchNotes}  />} />
+        <Route path='/delete' element={<DeleteNote
+          notes={notes}
+          setNotes={setNotes}
+          fetchNotes={fetchNotes} />} />
       </Routes>
     </Router>
   )

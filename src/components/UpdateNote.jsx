@@ -4,16 +4,14 @@ import UpdateForm from "./UpdateForm";
 function UpdateNote({ notes, setNotes, fetchNotes }) {
   const [selectedID, setSelectedID] = useState("select an ID");
 
-  const selectedIDHandler = (event) => {
-    // console.log(event.target.value)
+  const selectedIDHandler = (event) => {  
     setSelectedID(event.target.value);
   };
-
   return (
     <div>
       <h2>Update Notes</h2>
       <label>
-        Select the note id to be edited : &nbsp;&nbsp;&nbsp;
+        Select the Name-id to be edited : &nbsp;&nbsp;&nbsp;
         <select value={selectedID} onChange={selectedIDHandler}>
           <option>{"select an ID"}</option>
           {notes.map((note) => (

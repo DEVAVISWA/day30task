@@ -2,19 +2,16 @@ import React, { useState } from 'react'
 import DeleteForm from './DeleteForm'
 
 function DeleteNote({ notes, setNotes, fetchNotes}) {
-
     const [selectedID, setSelectedID] = useState('select an ID')
-
     const selectIDHandler = (event) => {
         // console.log(event.target.value)
         setSelectedID(event.target.value)
     }
-
     return (
         <div>
             <h2>Delete Note</h2>
             <label>
-                Select the note id to be deleted : &nbsp;&nbsp;&nbsp;
+                Select the Name-id to be deleted : &nbsp;&nbsp;&nbsp;
                 <select
                     value={selectedID}
                     onChange={selectIDHandler} >

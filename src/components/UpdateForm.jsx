@@ -9,7 +9,7 @@ function UpdateForm({ selectedID, notes, setNotes, fetchNotes }) {
 
   const fetchNote = async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/notes/${selectedID}`);
+      const response = await axios.get(`https://jsonplaceholder.typicode.com/users/${selectedID}`);
       // console.log(response.data);
       if (response.data) {
         setSelectedNote(response.data);
@@ -27,23 +27,16 @@ function UpdateForm({ selectedID, notes, setNotes, fetchNotes }) {
 
   const updateNote = (event) => {
     event.preventDefault();
-
     console.log('updating the note...');
-
-    // prepare the object to update
     let note = {
       id: selectedNote.id,
       content: editedContent,
       important: editedImportant,
     }
-
     axios
-      .put(`http://localhost:3001/notes/${selectedNote.id}`, note)
+      .put(`https://jsonplaceholder.typicode.com/users/${selectedNote.id}`, note)
       .then(response => {
-        // console.log(response);
         console.log('Note updated successfully...');
-
-        // update the state
         fetchNotes();
       })
       .catch(error => {
@@ -56,27 +49,14 @@ function UpdateForm({ selectedID, notes, setNotes, fetchNotes }) {
       <h3>Update Form</h3>
       <form onSubmit={updateNote}>
         <label>
-          Content: &nbsp;&nbsp;
+          Name: &nbsp;&nbsp;
           <input
-            value={editedContent}
+            value={editedContent || ''}
             onChange={e => setEditedContent(e.target.value)}
           />
         </label>
-        <br /><br />
-
-        <label>
-          Is Important: &nbsp;&nbsp;
-          <select
-            value={editedImportant ? 'true' : 'false'}
-            onChange={e => setEditedImportant(e.target.value == 'true')}
-          >
-            <option>true</option>
-            <option>false</option>
-          </select>
-        </label>
-
-        <br /><br />
-        <button type='submit'>Update Note</button>
+        <br /><br />        
+        <button type='submit'>Update Name</button>
       </form>
     </div>
   )
