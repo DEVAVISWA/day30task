@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Dashboard() {
+function DashBoard() {
   return (
     <div>
       <h3>React App that allows for CRUD operations 

@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import ReadNotes from './components/ReadNotes';
 import CreateNewNote from './components/CreateNewNote';
 import { Link, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import Dashboard from './components/Dashboard';
+import Dashboard from './components/DashBoard'
 import UpdateNote from './components/UpdateNote';
 import DeleteNote from './components/DeleteNotes';
 import './style/ReadNotes.css'
